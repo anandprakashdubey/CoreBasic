@@ -13,6 +13,10 @@
                 <button class="btn btn-outline-secondary" type="button">
                     <i class="fa fa-search"></i>
                 </button>
+                <a class="btn btn-primary"
+                   asp-page="./Edit">
+                     Create
+                </a>
             </span>
         </div>        
     </div>
@@ -34,9 +38,13 @@
                 <a class="btn btn-lg"
                    asp-page="./Detail"
                    asp-route-restaurantId="@item.Id">
+                    <i class="fas fa-window-maximize"></i>
+                </a>
+                <a class="btn btn-lg"
+                   asp-page="./Edit"
+                   asp-route-restaurantId="@item.Id">
                     <i class="fa fa-edit"></i>
                 </a>
-
             </td>
         </tr>
     }

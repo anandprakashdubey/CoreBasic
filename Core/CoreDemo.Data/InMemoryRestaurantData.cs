@@ -29,7 +29,31 @@ namespace CoreDemo.Data
             return (from r in restaurtants
                     where r.Id.Equals(Id)
                     select r).FirstOrDefault();
+        }
 
+        public Restaurant UpdateRestaurant(Restaurant res)
+        {
+            var ob = restaurtants.Where(item => item.Id == res.Id).FirstOrDefault();
+            if (ob != null)
+            {
+                restaurtants.Remove(ob);
+                restaurtants.Add(res);
+            }
+            return res;
+        }
+
+        public Restaurant AddRestaurant(Restaurant res)
+        {
+            var id = restaurtants.Max(item => item.Id);
+            res.Id = id + 1;
+            restaurtants.Add(res);
+
+            return res;
+        }
+
+        public int Commit()
+        {
+            return 0;
         }
     }
 }

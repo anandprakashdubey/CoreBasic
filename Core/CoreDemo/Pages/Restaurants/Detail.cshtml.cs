@@ -14,6 +14,9 @@ namespace CoreDemo.Pages.Restaurants
         private IRestaurantData restaurantdata;
         public Restaurant restaurant;
 
+        [TempData]
+        public string Message { get; set; }
+
         public DetailModel(IRestaurantData restaurantdata)
         {
             this.restaurantdata = restaurantdata;

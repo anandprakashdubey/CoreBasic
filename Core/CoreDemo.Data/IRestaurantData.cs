@@ -9,5 +9,9 @@ namespace CoreDemo.Data
     {
         IEnumerable<Restaurant> GetRestaurantByName(string name);
         Restaurant GetRestaurantById(int Id);
+
+        Restaurant UpdateRestaurant(Restaurant res);
+        Restaurant AddRestaurant(Restaurant res);
+        int Commit();
     }
 }

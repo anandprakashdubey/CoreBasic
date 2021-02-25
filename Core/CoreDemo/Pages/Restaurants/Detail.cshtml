@@ -1,5 +1,4 @@
 ﻿@page "{restaurantId:int}"
-
 @*
     Notes -
         Above mentioned notation  "{restaurantId:int}" coverts the query string format to /id format
@@ -9,11 +8,20 @@
 
         There is no other change, just parameter name should match everywhere like from url and method.
 
+        We can make this parameter as optional by just passing ? in last --- > "{restaurantId:int?}"
+        Use case is - edit and create can have same page.
+
 *@
 
 @model CoreDemo.Pages.Restaurants.DetailModel
 @{
 }
+
+@if (Model.Message != null)
+{
+    <div class="alert alert-info">@Model.Message</div>
+}
+
 
 <div>@Model.restaurant.Name</div>
 

@@ -1,0 +1,31 @@
+﻿@page "{restaurantId:int?}"
+@model CoreDemo.Pages.Restaurants.EditModel
+@{
+    ViewData["Title"] = "Edit";
+    var title = Model.restaurant.Id > 0 ? "Editing - " : "Create - ";
+}
+
+<h1>@title@Model.restaurant.Name</h1>
+
+<form  method="post">
+    <input type="hidden" asp-for="restaurant.Id" />
+    <div class="form-group">
+        <label asp-for="restaurant.Name"></label>
+        <input asp-for="restaurant.Name" class="form-control" />
+        <span class="text-danger" asp-validation-for="restaurant.Name"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="restaurant.Location"></label>
+        <input asp-for="restaurant.Location" class="form-control" />
+        <span class="text-danger" asp-validation-for="restaurant.Location"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="restaurant.Cusine"></label>
+        <select asp-for="restaurant.Cusine" asp-items="Model.cusines" class="form-control"></select>
+    </div>
+    <div class="form-group">
+        <a type="button" asp-page="./List" class="btn btn-primary">Return</a>
+        <button type="submit" class="btn btn-primary">Save</button>
+    </div>
+
+</form>
