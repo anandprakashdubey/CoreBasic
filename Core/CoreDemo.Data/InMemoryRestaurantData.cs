@@ -16,10 +16,11 @@ namespace CoreDemo.Data
                 new Restaurant  { Id = 3, Name = "Tacos", Cusine = CusineType.Mexican , Location = "New Mexico"}
             };
         }
-        public IEnumerable<Restaurant> GetAll()
+        public IEnumerable<Restaurant> GetRestaurantByName(string name)
         {
             return from r in restaurtants
-                   orderby r.Name
+                   where string.IsNullOrEmpty(name) || r.Name.StartsWith(name)
+                   orderby r.Name                  
                    select r;
         }
     }
