@@ -20,8 +20,16 @@ namespace CoreDemo.Data
         {
             return from r in restaurtants
                    where string.IsNullOrEmpty(name) || r.Name.StartsWith(name)
-                   orderby r.Name                  
+                   orderby r.Name
                    select r;
+        }
+
+        public Restaurant GetRestaurantById(int Id)
+        {
+            return (from r in restaurtants
+                    where r.Id.Equals(Id)
+                    select r).FirstOrDefault();
+
         }
     }
 }

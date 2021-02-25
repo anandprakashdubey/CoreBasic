@@ -8,5 +8,6 @@ namespace CoreDemo.Data
     public interface IRestaurantData
     {
         IEnumerable<Restaurant> GetRestaurantByName(string name);
+        Restaurant GetRestaurantById(int Id);
     }
 }

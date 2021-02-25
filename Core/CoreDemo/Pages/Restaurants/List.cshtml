@@ -11,7 +11,7 @@
             <input class="form-control" type="search" id="example-search-input" asp-for="SearchTerm">
             <span class="input-group-append">
                 <button class="btn btn-outline-secondary" type="button">
-                    <i class="glyphicon glyphicon-search"></i>
+                    <i class="fa fa-search"></i>
                 </button>
             </span>
         </div>        
@@ -22,6 +22,7 @@
         <td>Name</td>
         <td>Location</td>
         <td>Cusine</td>
+        <td></td>
     </tr>
     @foreach (var item in Model.restaurantList)
     {
@@ -29,6 +30,15 @@
             <td>@item.Name</td>
             <td>@item.Location</td>
             <td>@item.Cusine</td>
+            <td>
+                <a class="btn btn-lg"
+                   asp-page="./Detail"
+                   asp-route-restaurantId="@item.Id">
+                    <i class="fa fa-edit"></i>
+                </a>
+
+            </td>
         </tr>
     }
 </table>
+

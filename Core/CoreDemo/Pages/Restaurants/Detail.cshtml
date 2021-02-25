@@ -1,0 +1,27 @@
+﻿@page "{restaurantId:int}"
+
+@*
+    Notes -
+        Above mentioned notation  "{restaurantId:int}" coverts the query string format to /id format
+
+        without above mentioned tag, url will be - https://localhost:44368/Restaurants/Detail?restaurantId=1
+        with above tag, url will be - https://localhost:44368/Restaurants/Detail/1
+
+        There is no other change, just parameter name should match everywhere like from url and method.
+
+*@
+
+@model CoreDemo.Pages.Restaurants.DetailModel
+@{
+}
+
+<div>@Model.restaurant.Name</div>
+
+<div>
+    <div>Id: @Model.restaurant.Id</div>
+    <div>Location : @Model.restaurant.Location</div>
+    <div>Cusine Type : @Model.restaurant.Cusine</div>
+</div>
+<div>
+    <a asp-page="./List" class="btn btn-primary">All Restaurants</a>
+</div>
