@@ -1,0 +1,14 @@
+﻿Installed Entityframework, Entityframework.SqlServer, Entityframework.Design
+Added DBContext and Connection string and service provider in startup file.
+
+Added Mirgrations with Following Command - 
+Added EF CLI tool, because migration can be done with CLI  - [dotnet tool install --global dotnet-ef --version 3.0.0]
+dotnet ef migrations add initialcreate -s ..\CoreDemo\CoreDemo.csproj
+
+ABOVE command will create migration folder inside data project.
+
+**************To remove the migration - dotnet ef migration remove*************
+
+After creating migration file, execute the below command to create tables in DBContext
+dotnet ef database update -s ..\CoreDemo\CoreDemo.csproj
+
