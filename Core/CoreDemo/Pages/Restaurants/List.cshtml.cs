@@ -23,8 +23,8 @@ namespace CoreDemo.Pages.Restaurants
         [BindProperty(SupportsGet = true)]
         public string SearchTerm { get; set; }
 
-        [BindProperty(SupportsGet = true)]
-        public int restaurantId { get; set; }
+        [BindProperty]
+        public int Id { get; set; }
 
         public ListModel(IConfiguration config,
             IRestaurantData restaurantData)
@@ -34,16 +34,21 @@ namespace CoreDemo.Pages.Restaurants
         }
         public void OnGet()
         {
-            if (restaurantId != 0)
-            {
-                restaurantData.DeleteRestaurant(restaurantId);
-                restaurantData.Commit();
-            }
+           
             //One way to get value from query string
             //string input = HttpContext.Request.Query["searchinput"];
 
             restaurantList = this.restaurantData.GetRestaurantByName(SearchTerm);
-            Message = config["Message"];
+            Message = config["Message"];            
+        }
+
+        public void OnPost() {
+            if (Id != 0)
+            {
+                restaurantData.DeleteRestaurant(Id);
+                restaurantData.Commit();
+            }
+            restaurantList = this.restaurantData.GetRestaurantByName(SearchTerm);
         }
     }
 }
