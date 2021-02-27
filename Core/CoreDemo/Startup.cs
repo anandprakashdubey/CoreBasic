@@ -6,6 +6,7 @@ using CoreDemo.Data;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -24,7 +25,17 @@ namespace CoreDemo
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddSingleton<IRestaurantData, InMemoryRestaurantData>();
+            services.AddDbContextPool<RestaurantDBContext>(option =>
+            {
+                option.UseSqlServer(Configuration.GetConnectionString("CoreDemo"));
+            });
+
+
+            //services.AddSingleton<IRestaurantData, InMemoryRestaurantData>();
+
+            //AddScoped manages the request within HTTP request. per request there will be new RestaurantData instance.
+            services.AddScoped<IRestaurantData, SqlRestaurantData>();
+
             services.AddRazorPages();
         }
 

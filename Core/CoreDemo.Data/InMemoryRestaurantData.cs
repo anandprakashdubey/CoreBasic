@@ -51,6 +51,13 @@ namespace CoreDemo.Data
             return res;
         }
 
+        public Restaurant DeleteRestaurant(int Id)
+        {
+            var _res = restaurtants.SingleOrDefault(item => item.Id == Id);
+            restaurtants.Remove(_res);
+            return _res;
+        }
+
         public int Commit()
         {
             return 0;

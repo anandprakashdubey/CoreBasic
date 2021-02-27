@@ -1,4 +1,4 @@
-﻿@page
+﻿@page "{restaurantId:int?}"
 @model CoreDemo.Pages.Restaurants.ListModel
 @{
 }
@@ -44,6 +44,11 @@
                    asp-page="./Edit"
                    asp-route-restaurantId="@item.Id">
                     <i class="fa fa-edit"></i>
+                </a>
+                <a class="btn btn-lg"
+                   asp-page="./List"
+                   asp-route-restaurantId="@item.Id">
+                    <i class="fa fa-remove"></i>
                 </a>
             </td>
         </tr>

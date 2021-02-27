@@ -12,6 +12,8 @@ namespace CoreDemo.Data
 
         Restaurant UpdateRestaurant(Restaurant res);
         Restaurant AddRestaurant(Restaurant res);
+
+        Restaurant DeleteRestaurant(int Id);
         int Commit();
     }
 }

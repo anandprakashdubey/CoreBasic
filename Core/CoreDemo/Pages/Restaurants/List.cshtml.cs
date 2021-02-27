@@ -20,8 +20,11 @@ namespace CoreDemo.Pages.Restaurants
 
         // BindProperty takes value from HTTPREQUEST WHEN PAGE LOADS BUT BY DEFAULT IT WORKS WITH HTTPPOST
         // TO MAKE THIS WORK WITH HTTPGET, NEED TO ADD SUPPORTGET TAG ALSO
-        [BindProperty(SupportsGet =true)]
+        [BindProperty(SupportsGet = true)]
         public string SearchTerm { get; set; }
+
+        [BindProperty(SupportsGet = true)]
+        public int restaurantId { get; set; }
 
         public ListModel(IConfiguration config,
             IRestaurantData restaurantData)
@@ -31,6 +34,11 @@ namespace CoreDemo.Pages.Restaurants
         }
         public void OnGet()
         {
+            if (restaurantId != 0)
+            {
+                restaurantData.DeleteRestaurant(restaurantId);
+                restaurantData.Commit();
+            }
             //One way to get value from query string
             //string input = HttpContext.Request.Query["searchinput"];
 
