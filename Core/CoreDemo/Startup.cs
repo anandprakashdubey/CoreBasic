@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using CoreDemo.Data;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -53,6 +54,9 @@ namespace CoreDemo
                 app.UseHsts();
             }
 
+            app.Use(SayHelloCustomMiddleWareExample);
+
+
             app.UseHttpsRedirection();
             app.UseStaticFiles();
 
@@ -64,6 +68,22 @@ namespace CoreDemo
             {
                 endpoints.MapRazorPages();
             });
+        }
+
+        private RequestDelegate SayHelloCustomMiddleWareExample(RequestDelegate next)
+        {
+            return async ctx =>
+            {
+                if (ctx.Request.Path.StartsWithSegments("/hello"))
+                {
+                    await ctx.Response.WriteAsync("Hello World");
+                }
+                else
+                {
+                    await next(ctx);
+                }
+
+            };
         }
     }
 }

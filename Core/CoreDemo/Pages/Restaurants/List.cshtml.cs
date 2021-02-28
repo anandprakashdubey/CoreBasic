@@ -7,6 +7,7 @@ using CoreDemo.Data;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Logging;
 
 namespace CoreDemo.Pages.Restaurants
 {
@@ -14,6 +15,8 @@ namespace CoreDemo.Pages.Restaurants
     {
         private readonly IConfiguration config;
         private readonly IRestaurantData restaurantData;
+        private readonly ILogger<ListModel> logger;
+
         public string Message { get; set; }
         public IEnumerable<Restaurant> restaurantList;
 
@@ -27,18 +30,20 @@ namespace CoreDemo.Pages.Restaurants
         public int Id { get; set; }
 
         public ListModel(IConfiguration config,
-            IRestaurantData restaurantData)
+            IRestaurantData restaurantData,
+            ILogger<ListModel> logger)
         {
             this.config = config;
             this.restaurantData = restaurantData;
+            this.logger = logger;
         }
         public void OnGet()
         {
-           
-            //One way to get value from query string
-            //string input = HttpContext.Request.Query["searchinput"];
+            logger.LogError("Loading List");
+             //One way to get value from query string
+             //string input = HttpContext.Request.Query["searchinput"];
 
-            restaurantList = this.restaurantData.GetRestaurantByName(SearchTerm);
+             restaurantList = this.restaurantData.GetRestaurantByName(SearchTerm);
             Message = config["Message"];            
         }
 
