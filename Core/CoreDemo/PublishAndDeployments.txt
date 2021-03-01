@@ -1,0 +1,41 @@
+﻿****************************Publish***********************************
+
+>> dotnet publish --help
+>> dotnet publish -o c:\WorkSpace\DotNetCore\Publish\1     { -o is output path }
+
+When we use NPM in Dotnet project and when we publish the proeject, node_modules does not include. So in order to add during publish we need to add few code in web project .csproj file.
+
+	<Target Name="PostBuild" AfterTargets="ComputeFilesToPublish">
+		<Exec Command="npm install"/>
+	</Target>
+
+	<ItemGroup>
+		<Content Include="node_modules/**" CopyToPublishDirectory="PreserveNewest"/>
+	</ItemGroup>
+
+And after this, delete ItemGroup which has node_modules include instructions.
+
+
+****Publishing File with Self Contained Options, but we have to give Runtime Identifier  we can get it from RID website
+.net core RID catalog
+
+>> dotnet publish -o c:\WorkSpace\DotNetCore\Publish\1  --self-contained  -r win-x64 { --self-contained will create package which will be OS independent }
+
+>> dotnet publish -o c:\WorkSpace\Publish\1 --self-contained -r win-x64
+
+where win-x64 is RID for 64 bit Win OS
+
+So after publishing self-contained, we can the app with "CoreDemo.exe CoreDemo.dll" dotnet cli command is not available in OS that's why we use exe space command.
+
+*********************************************************************************************************************************
+
+****************************Deployment***********************************
+For Linux with Nginx - We should look on this page - Host Asp.net Core on Linux with Nginx , its a microsoft website.
+For Linux with Apache - We should look on this page - Host Asp.net Core on Linux with Apache , its a microsoft website.
+For Windows with IIS - We should look on this page - Host Asp.net Core on Windows with IIS , its a microsoft website.
+
+For windows hosting, we need to install .Net Core Hosting Bundle
+
+
+
+
