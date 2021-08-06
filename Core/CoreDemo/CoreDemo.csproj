@@ -2,6 +2,7 @@
 
   <PropertyGroup>
     <TargetFramework>netcoreapp3.0</TargetFramework>
+    <UserSecretsId>7ae0ac51-5509-42a4-b8dc-5c2e1d046e82</UserSecretsId>
   </PropertyGroup>
 
 
@@ -18,6 +19,11 @@
 
   <ItemGroup>
     <ProjectReference Include="..\CoreDemo.Data\CoreDemo.Data.csproj" />
+  </ItemGroup>
+
+
+  <ItemGroup>
+    <Folder Include="Published\" />
   </ItemGroup>
 
 </Project>
